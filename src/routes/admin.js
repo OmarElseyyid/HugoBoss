@@ -25,18 +25,29 @@ adminRouter.get('', async (req, res) => {
     if (req.session.logged == true) {
 
         connection.query('SELECT * FROM users WHERE id =' + req.session.user_id, (err, rows) => {
-            
+
             if (err) {
                 console.log(err)
             }
 
-            rows.forEach(element => {
-                res.render('admin/dashboard', { data: element })
-            });
+            connection.query('SELECT * FROM stoktakiurunler', (err, rows2) => {
+
+                if (err) {
+                    console.log(err)
+                }
+
+                rows.forEach(element => {
+                    res.render('admin/dashboard', {
+                        data: [element, rows2]
+                    })
+                });
+
+            })
+
+
         })
 
-    }
-    else {
+    } else {
         res.render('admin/login')
     }
 
@@ -45,7 +56,7 @@ adminRouter.get('', async (req, res) => {
 adminRouter.post('/dashboard', async (req, res) => {
 
     connection.query('SELECT * FROM users', (err, rows) => {
-        
+
         if (err) {
             console.log(err)
         }
@@ -57,8 +68,19 @@ adminRouter.post('/dashboard', async (req, res) => {
                 req.session.user_id = element['id']
                 req.session.logged = true
 
+                connection.query('SELECT * FROM stoktakiurunler', (err, rows2) => {
 
-                res.render('admin/dashboard', { data: element })
+                    if (err) {
+                        console.log(err)
+                    }
+
+
+                    res.render('admin/dashboard', {
+                        data: [element, rows2]
+                    })
+
+
+                })
             }
             //add erro msg lates if the login failed
         });
@@ -72,18 +94,26 @@ adminRouter.get('/dashboard', async (req, res) => {
     if (req.session.logged == true) {
 
         connection.query('SELECT * FROM users WHERE id =' + req.session.user_id, (err, rows) => {
-        
+
             if (err) {
                 console.log(err)
             }
 
-            rows.forEach(element => {
-                res.render('admin/dashboard', { data: element })
-            });
+            connection.query('SELECT * FROM stoktakiurunler', (err, rows2) => {
+            
+                if (err) {
+                    console.log(err)
+                }
+
+                rows.forEach(element => {
+                    res.render('admin/dashboard', { data: [element, rows2] })
+                });
+                
+            })
+
         })
 
-    }
-    else {
+    } else {
         res.render('admin/login')
     }
 
@@ -95,8 +125,7 @@ adminRouter.get('/logout', async (req, res) => {
     if (req.session.logged == true) {
         req.session.destroy();
         res.render('admin/login')
-    }
-    else {
+    } else {
         res.render('admin/login')
     }
 
@@ -109,18 +138,25 @@ adminRouter.get('/p1', async (req, res) => {
     if (req.session.logged == true) {
 
         connection.query('SELECT * FROM users WHERE id =' + req.session.user_id, (err, rows) => {
-            
+
             if (err) {
                 console.log(err)
             }
 
-            rows.forEach(element => {
-                res.render('admin/fabrikalar/p1', { data: element })
-            });
+            connection.query('SELECT * FROM stoktakiurunler', (err, rows2) => {
+            
+                if (err) {
+                    console.log(err)
+                }
+
+                rows.forEach(element => {
+                    res.render('admin/fabrikalar/p1', { data: [element, rows2] })
+                });
+                
+            })
         })
 
-    }
-    else {
+    } else {
         res.render('admin/login')
     }
 
@@ -129,21 +165,28 @@ adminRouter.get('/p1', async (req, res) => {
 adminRouter.get('/p2', async (req, res) => {
 
     // if user logged in and he wes admin
-    if (req.session.logged == true ) {
+    if (req.session.logged == true) {
 
         connection.query('SELECT * FROM users WHERE id =' + req.session.user_id, (err, rows) => {
-            
+
             if (err) {
                 console.log(err)
             }
 
-            rows.forEach(element => {
-                res.render('admin/fabrikalar/p2', { data: element })
-            });
+            connection.query('SELECT * FROM stoktakiurunler', (err, rows2) => {
+            
+                if (err) {
+                    console.log(err)
+                }
+
+                rows.forEach(element => {
+                    res.render('admin/fabrikalar/p2', { data: [element, rows2] })
+                });
+                
+            })
         })
 
-    }
-    else {
+    } else {
         res.render('admin/login')
     }
 
@@ -153,21 +196,28 @@ adminRouter.get('/p2', async (req, res) => {
 adminRouter.get('/p3', async (req, res) => {
 
     // if user logged in and he wes admin
-    if (req.session.logged == true ) {
+    if (req.session.logged == true) {
 
         connection.query('SELECT * FROM users WHERE id =' + req.session.user_id, (err, rows) => {
-            
+
             if (err) {
                 console.log(err)
             }
 
-            rows.forEach(element => {
-                res.render('admin/fabrikalar/p3', { data: element })
-            });
+            connection.query('SELECT * FROM stoktakiurunler', (err, rows2) => {
+            
+                if (err) {
+                    console.log(err)
+                }
+
+                rows.forEach(element => {
+                    res.render('admin/fabrikalar/p3', { data: [element, rows2] })
+                });
+                
+            })
         })
 
-    }
-    else {
+    } else {
         res.render('admin/login')
     }
 
@@ -181,18 +231,26 @@ adminRouter.get('/istatistics', async (req, res) => {
     if (req.session.logged == true) {
 
         connection.query('SELECT * FROM users WHERE id =' + req.session.user_id, (err, rows) => {
-            
+
             if (err) {
                 console.log(err)
             }
 
-            rows.forEach(element => {
-                res.render('admin/istatistics', { data: element })
-            });
+            connection.query('SELECT * FROM stoktakiurunler', (err, rows2) => {
+            
+                if (err) {
+                    console.log(err)
+                }
+
+                rows.forEach(element => {
+                    res.render('admin/istatistics', { data: [element, rows2] })
+                });
+                
+            })
+
         })
 
-    }
-    else {
+    } else {
         res.render('admin/login')
     }
 
@@ -204,7 +262,7 @@ adminRouter.get('/siparisler', async (req, res) => {
     if (req.session.logged == true) {
 
         connection.query('SELECT * FROM users WHERE id =' + req.session.user_id, (err, rows) => {
-            
+
             if (err) {
                 console.log(err)
             }
@@ -212,31 +270,32 @@ adminRouter.get('/siparisler', async (req, res) => {
             rows.forEach(element => {
 
                 connection.query('SELECT * FROM siparis', (err, rows) => {
-            
+
                     if (err) {
                         console.log(err)
                     }
 
                     connection.query('SELECT * FROM stoktakiurunler', (err, rows2) => {
-            
+
                         if (err) {
                             console.log(err)
                         }
-    
-                        res.render('admin/siparisler', { data: [element,rows,rows2] })
-                        
+
+                        res.render('admin/siparisler', {
+                            data: [element, rows2, rows]
+                        })
+
                     })
 
-                   
-                    
+
+
                 })
 
-                
+
             });
         })
 
-    }
-    else {
+    } else {
         res.render('admin/login')
     }
 

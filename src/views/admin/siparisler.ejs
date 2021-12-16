@@ -1,57 +1,59 @@
 <%- include('partials/header.ejs') %>
 
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <br>
-        <!-- Main content -->
-        <section class="content">
-            <% let urun_ad = ""; for(var i=0; i<data[1].length; i++) {%>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <br>
+    <!-- Main content -->
+    <section class="content">
+        <% let urun_ad = ""; for(var i=0; i<data[2].length; i++) {%>
 
-            <!-- general form elements -->
-            <div class="card card-danger">
-                <div class="card-header">
-                    <h3 class="card-title"><%= i+1 %> . Sipariş</h3>
-                </div>
-                <!-- /.card-header -->
-                <!-- form start -->
-                
+        <!-- general form elements -->
+        <div class="card card-danger">
+            <div class="card-header">
+                <h3 class="card-title"><%= i+1 %> . Sipariş</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
 
-                <div class="card-body">
+
+            <div class="card-body">
+                <form action="" method="post">
                     <div class="form-group">
-                        <label>Son Teslim Tarihi:  </label>
-                        <%= data[1][i].siparis_teslim_tarihi %><br>
+                        <label>Son Teslim Tarihi: </label>
+                        <%= data[2][i].siparis_teslim_tarihi %><br>
 
-                        <label>Sipariş adeti:  </label>
-                        <%= data[1][i].siparis_adeti %><br>
+                        <label>Sipariş adeti: </label>
+                        <%= data[2][i].siparis_adeti %><br>
 
-                        <label>Sipariş ürün adı:  </label>
+                        <label>Sipariş ürün adı: </label>
                         <% for(var x=0; x<data[2].length; x++) {%>
-                            <% if(data[2][x].id == data[1][i].siparis_urun_id){urun_ad = data[2][x].adi} %> 
+                        <% if(data[1][x].id == data[2][i].siparis_urun_id){urun_ad = data[1][x].adi} %>
                         <%}%>
                         <%= urun_ad %><br>
 
                     </div>
-                    
-                </div>
-                <!-- /.card-body -->
-
+                    <button type="submit" class="btn btn-warning btn-block">Stok Onayla</button>
+                </form>
             </div>
-            <!-- /.card -->
+            <!-- /.card-body -->
+
+        </div>
+        <!-- /.card -->
 
         <% } %>
-          
 
 
-    </div>
 
-    </section>
-    <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
+</div>
+
+</section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
 
 
-    <%- include('partials/footer.ejs') %>
+<%- include('partials/footer.ejs') %>
 
-        </body>
+</body>
 
-        </html>
+</html>
