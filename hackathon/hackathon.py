@@ -7,6 +7,7 @@ Created on Wed Dec 15 23:16:30 2021
 
 import pandas as pd 
 import numpy as np
+import pickle
 from sklearn.metrics import confusion_matrix
 from sklearn.linear_model import LogisticRegression
 veriler = pd.read_excel('Hugo Boss.xls')
@@ -73,5 +74,9 @@ y_pred = rfc.predict(X_test)
 cm = confusion_matrix(y_test,y_pred)
 print('RFC')
 print(cm)
-2428
-print(rfc.predict([[9,7,250]]))
+
+pickle.dump(rfc, open('model.pkl', 'wb'))
+
+model = pickle.load(open('model.pkl','rb'))
+print(model.predict([[9,7,250]]))
+
