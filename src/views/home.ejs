@@ -3,132 +3,156 @@
 
 <head>
 
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Hugo Boss</title>
-    <meta name="keywords" content="" />
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="/img/car.png" type="image/icon type">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Hugo Boss</title>
+  <meta name="keywords" content="" />
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="/img/car.png" type="image/icon type">
 
-    <!-- bootstrap.min css -->
-    <link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css">
-    <!-- Icon Font Css -->
-    <link rel="stylesheet" href="/plugins/themify/css/themify-icons.css">
-    <link rel="stylesheet" href="/plugins/fontawesome/css/all.css">
-    <link rel="stylesheet" href="/plugins/magnific-popup/dist/magnific-popup.css">
-    <!-- Owl Carousel CSS -->
-    <link rel="stylesheet" href="/plugins/slick-carousel/slick/slick.css">
-    <link rel="stylesheet" href="/plugins/slick-carousel/slick/slick-theme.css">
+  <!-- bootstrap.min css -->
+  <link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css">
+  <!-- Icon Font Css -->
+  <link rel="stylesheet" href="/plugins/themify/css/themify-icons.css">
+  <link rel="stylesheet" href="/plugins/fontawesome/css/all.css">
+  <link rel="stylesheet" href="/plugins/magnific-popup/dist/magnific-popup.css">
+  <!-- Owl Carousel CSS -->
+  <link rel="stylesheet" href="/plugins/slick-carousel/slick/slick.css">
+  <link rel="stylesheet" href="/plugins/slick-carousel/slick/slick-theme.css">
 
-    <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="/css/style.css">
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="/css/style.css">
 
 </head>
 
 <body class="bg-dark">
 
 
-    <!-- Header Start -->
+  <!-- Header Start -->
 
-    <header class="navigation">
-        <nav class="navbar navbar-expand-lg  py-4" id="navbar">
-            <div class="container-fluid">
-                <a class="navbar-brand " href="/">
-                    Hugo Boss<span> Sipariş Verme Sistemi.</span>
-                </a>
-            </div>
-        </nav>
-    </header>
+  <header class="navigation">
+    <nav class="navbar navbar-expand-lg  py-4" id="navbar">
+      <div class="container-fluid">
+        <a class="navbar-brand " href="/">
+          Hugo Boss<span> Sipariş Verme Sistemi.</span>
+        </a>
+      </div>
+    </nav>
+  </header>
 
-    <!-- Header Close -->
+  <!-- Header Close -->
 
-    <!-- Slider Start -->
-   
-        <div class="container p-5">
-            <!-- general form elements disabled -->
-            <div class="card card-warning">
-                <div class="card-header">
-                  <h3 class="card-title">Sipariş iste</h3>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                  <form>  
-                    <!-- input states -->
-                    <div class="form-group">
-                  
-                      <label class="col-form-label" for="inputSuccess"> Son teslim tarihi</label>
-                      <input type="date" class="form-control" id="inputSuccess">
+  <!-- Slider Start -->
 
-                      <label class="col-form-label" for="inputSuccess"> Ürün Sayisi</label>
-                      <input type="number" class="form-control" id="inputSuccess" placeholder="Enter ...">
+  <div class="container p-5">
+    <!-- general form elements disabled -->
+    <div class="card card-warning">
+      <div class="card-header">
+        <h3 class="card-title">Sipariş iste</h3>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body">
+        <form action="siparisVer" method="post" id="idForm">
+          <!-- input states -->
+          <div class="form-group">
 
-                    </div>
-    
-  
-                    <div class="row">
-                      <div class="col-sm-12">
-                        <!-- Select multiple-->
-                        <div class="form-group">
-                          <label>İstenilen ürün</label>
-                          <select multiple class="form-control">
-                            <option>option 1</option>
-                            <option>option 2</option>
-                            <option>option 3</option>
-                            <option>option 4</option>
-                            <option>option 5</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                    
-                  </form>
-                </div>
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-danger">Talep Gönder</button>
-                  </div>
-                <!-- /.card-body -->
+            <label class="col-form-label" for="inputSuccess"> Son teslim tarihi</label>
+            <input type="date" name="urun_tarihi" class="form-control" id="inputSuccess">
+
+            <label class="col-form-label" for="inputSuccess"> Ürün Sayisi</label>
+            <input type="number" name="urun_sayisi" class="form-control" id="inputSuccess" placeholder="Enter ...">
+
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <!-- Select multiple-->
+              <div class="form-group">
+                <label>İstenilen ürün</label>
+                <select name="urun_adi" multiple class="form-control">
+                  <% for(var i=0; i<data.length; i++) {%>
+
+                    <option value="<%= data[i].id %>">
+                      <%= data[i].adi %>
+                    </option>
+
+                    <% } %>
+                </select>
               </div>
-              <!-- /.card -->
-            <div class="footer-btm pt-3">
-                <div class="row">
-                    <div class="col-12 text-center">
-                        <div class="copyright text-light">
-                            &copy; Tüm hakları saklıdır <span class="text-color">2021.</span>
-                        </div>
-                    </div>
-                </div>
             </div>
+          </div>
+          <div class="card-footer">
+            <button type="submit" id="mybtn" class="btn btn-danger">Talep Gönder</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+    <div class="footer-btm pt-3">
+      <div class="row">
+        <div class="col-12 text-center">
+          <div class="copyright text-light">
+            &copy; Tüm hakları saklıdır <span class="text-color">2021.</span>
+          </div>
         </div>
-   
-    <!-- Section Intro Start -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Section Intro Start -->
 
 
-    <!-- 
+  <!-- 
     Essential Scripts
     =====================================-->
 
+  
+  <script>
 
-    <!-- Main jQuery -->
-    <script src="/plugins/jquery/jquery.js"></script>
-    <script src="/js/contact.js"></script>
-    <!-- Bootstrap 4.3.1 -->
-    <script src="/plugins/bootstrap/js/popper.js"></script>
-    <script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <!--  Magnific Popup-->
-    <script src="/plugins/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
-    <!-- Slick Slider -->
-    <script src="/plugins/slick-carousel/slick/slick.min.js"></script>
-    <!-- Counterup -->
-    <script src="/plugins/counterup/jquery.waypoints.min.js"></script>
-    <script src="/plugins/counterup/jquery.counterup.min.js"></script>
+    $("#idForm").submit(function (e) {
 
-    <!-- Google Map -->
-    <script src="/plugins/google-map/map.js"></script>
-    <script
-        src="/https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>
-    <script src="/js/script.js"></script>
+      e.preventDefault(); // avoid to execute the actual submit of the form.
+
+      var form = $(this);
+      var url = form.attr('action');
+      
+      $.ajax({
+        type: "POST",
+        url: url,
+        data: form.serialize(), // serializes the form's elements.
+        success: function (data) {
+          alert(data);
+        }
+      });
+
+
+    });
+
+  </script>
+
+  <!-- Main jQuery -->
+  <script src="/plugins/jquery/jquery.js"></script>
+  <script src="/js/contact.js"></script>
+  <!-- Bootstrap 4.3.1 -->
+  <script src="/plugins/bootstrap/js/popper.js"></script>
+  <script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+  <!--  Magnific Popup-->
+  <script src="/plugins/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+  <!-- Slick Slider -->
+  <script src="/plugins/slick-carousel/slick/slick.min.js"></script>
+  <!-- Counterup -->
+  <script src="/plugins/counterup/jquery.waypoints.min.js"></script>
+  <script src="/plugins/counterup/jquery.counterup.min.js"></script>
+
+  <!-- Google Map -->
+  <script src="/plugins/google-map/map.js"></script>
+  <script
+    src="/https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>
+  <script src="/js/script.js"></script>
 
 </body>
 

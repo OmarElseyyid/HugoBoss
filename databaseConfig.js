@@ -7,7 +7,7 @@ const config = {
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'ois_yeni_db', 
+    database: 'hugoboss_db', 
 }
 
 var connection  = mysql.createConnection(config)
